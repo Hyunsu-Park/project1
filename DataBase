@@ -1,0 +1,263 @@
+-- --------------------------------------------------------
+-- 호스트:                          127.0.0.1
+-- 서버 버전:                        8.0.23 - MySQL Community Server - GPL
+-- 서버 OS:                        Win64
+-- HeidiSQL 버전:                  11.2.0.6213
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+-- corona_live_db 데이터베이스 구조 내보내기
+CREATE DATABASE IF NOT EXISTS `corona_live_db` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `corona_live_db`;
+
+-- 테이블 corona_live_db.clp_information 구조 내보내기
+CREATE TABLE IF NOT EXISTS `clp_information` (
+  `clpi_seq` int NOT NULL AUTO_INCREMENT,
+  `clpi_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0',
+  `clpi_wp` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0' COMMENT 'wp:WorkPlace',
+  `clpi_age` int NOT NULL DEFAULT '0',
+  `clpi_address` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0',
+  `clpv_seq` int DEFAULT NULL COMMENT 'v:visit(방문) 방문자번호',
+  PRIMARY KEY (`clpi_seq`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='(patient)확진자 정보';
+
+-- 테이블 데이터 corona_live_db.clp_information:~11 rows (대략적) 내보내기
+/*!40000 ALTER TABLE `clp_information` DISABLE KEYS */;
+INSERT INTO `clp_information` (`clpi_seq`, `clpi_name`, `clpi_wp`, `clpi_age`, `clpi_address`, `clpv_seq`) VALUES
+	(1, '홍길동환자', '서울특별시 성동구 마장동 skt매장', 26, '서울특별시 성동구 마장동 현대아이파크110동 102호', 1),
+	(2, '고길동환자', '서울특별시 강남구 방배동 교촌치킨', 30, '서울특별시 신림동 청학주택 102호', 2),
+	(3, '김시우환자', '경기도 일산시 쿠팡플레이', 32, '서울특별시 양천구 목동 현대푸르지오 105동 304호', 3),
+	(4, '김준기환자', '대구 서구 평리동 대백마트', 26, '대구 서구 평리동 참좋은빌라 104호', 4),
+	(5, '신형만환자', '서울특별시 성북구 E마트', 43, '서울특별시 성북구 삼성자이 아파트 204동 501호', 5),
+	(6, '김미소환자', '경기도 수원시 베스트학원', 34, '경기도 수원시 미림주택 205호', 6),
+	(7, '아무개환자', '서울특별시 양천구 화곡동 히트짐헬스장', 31, '서울특별시 양천구 화곡동 화곡빌라 401호', 7),
+	(8, '이나라환자', '서울특별시 서초구 kb콜센터', 35, '서울특별시 서초구 예미지아파트 201동 1203호', 8),
+	(9, '김신영환자', '충청남도 충북시 광명학원', 41, '충청남도 충북시 우리빌라 301호', 9);
+/*!40000 ALTER TABLE `clp_information` ENABLE KEYS */;
+
+-- 테이블 corona_live_db.clp_visit 구조 내보내기
+CREATE TABLE IF NOT EXISTS `clp_visit` (
+  `clpv_seq` int NOT NULL AUTO_INCREMENT,
+  `clpv_area` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `clpv_type` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `clpv_address` varchar(10000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `clpv_first_visit_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '첫 방문일자',
+  `clpv_last_visit_date` datetime DEFAULT NULL COMMENT '마지막 방문일자',
+  `clpv_disinfection` int NOT NULL DEFAULT '0' COMMENT 'disinfection:소독여부/0:소독완료/1:소독안함',
+  PRIMARY KEY (`clpv_seq`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='확진자 방문기록';
+
+-- 테이블 데이터 corona_live_db.clp_visit:~11 rows (대략적) 내보내기
+/*!40000 ALTER TABLE `clp_visit` DISABLE KEYS */;
+INSERT INTO `clp_visit` (`clpv_seq`, `clpv_area`, `clpv_type`, `clpv_address`, `clpv_first_visit_date`, `clpv_last_visit_date`, `clpv_disinfection`) VALUES
+	(1, '서울특별시 강남구', '목욕탕', '제이씨엠스파 (서울특별시 논현로63길16 지하1층)', '2021-03-20 16:27:12', NULL, 0),
+	(2, '서울특별시 강북구', '요리주점', '주다방 (서울특별시 한천로139길42 지하1층)', '2021-03-26 18:34:29', '2021-04-09 22:35:16', 0),
+	(3, '서울특별시 강남구', '유흥주점', '퓨처스 / 퓨처스2 (서울특별시 강남구 언주로640 지하1층)', '2021-04-09 16:36:54', NULL, 0),
+	(4, '서울특별시 강남구', '유흥주점', '장난감 (서울특별시 강남구 선릉로92길35 지하1층)', '2021-03-26 00:00:00', NULL, 0),
+	(5, '경기도 고양시구', '기도원점', '바른법연구원(원당 / 원흥법당) (경기도 고양시 덕양구 원당로319번길 73)', '2021-03-08 00:00:00', '2021-03-31 00:00:00', 0),
+	(6, '서울특별시 관악구', '-', '다인영농조합 (서울특별시 관악구 양녕로6길 75 401호))', '2021-03-27 00:00:00', '2021-03-30 00:00:00', 0),
+	(7, '서울특별시 동대문구', '음식점', '갈비명가이상 (서울특별시 동대문구(답십리점))', '2021-03-22 00:00:00', '2021-04-04 00:00:00', 0),
+	(8, '서울특별시 서대문구', '교회', '서울수정교회 (서울특별시 서대문구 연희로28)', '2021-03-15 00:00:00', '2021-04-09 00:00:00', 0),
+	(9, '서울특별시 성북구', '찜질방', '월곡건강랜드 (서울특별시 성북구 화랑로7길 32)', '2021-03-24 00:00:00', '2021-04-07 00:00:00', 0);
+/*!40000 ALTER TABLE `clp_visit` ENABLE KEYS */;
+
+-- 테이블 corona_live_db.cl_category 구조 내보내기
+CREATE TABLE IF NOT EXISTS `cl_category` (
+  `clc_seq` int NOT NULL AUTO_INCREMENT,
+  `clc_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `clc_url` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `clc_parent_seq` int NOT NULL,
+  PRIMARY KEY (`clc_seq`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+
+-- 테이블 데이터 corona_live_db.cl_category:~12 rows (대략적) 내보내기
+/*!40000 ALTER TABLE `cl_category` DISABLE KEYS */;
+INSERT INTO `cl_category` (`clc_seq`, `clc_name`, `clc_url`, `clc_parent_seq`) VALUES
+	(1, '코로나 바로 알기', '/category/corona_know', 0),
+	(2, '거리두기 지침 레벨당 수칙', '/category/corona_distance', 1),
+	(3, '지침 게시글', '/category/corona_guid', 1),
+	(4, '코로나 동향', '/category/corona_trends', 0),
+	(5, '확진자 이동경로 게시판', '/category/corona_visit', 4),
+	(6, '시.도 별 발생동향', '/category/corona_occu_trend', 4),
+	(7, '코로나 뉴스', '/category/corona_news', 0),
+	(8, '보도자료 게시판', '/category/corona_press_release', 7),
+	(9, '코로나 공지', '/category/corona_notice', 0),
+	(10, '자가격리자 공지 게시판', '/category/corona_isolation_notice', 9),
+	(11, '입국자 및 해외여행객 공지 게시판', '/category/corona_entrant_notice', 9),
+	(12, '코로나 FAQ', '/category/corona_FAQ', 0);
+/*!40000 ALTER TABLE `cl_category` ENABLE KEYS */;
+
+-- 테이블 corona_live_db.cl_daliy_area_dead 구조 내보내기
+CREATE TABLE IF NOT EXISTS `cl_daliy_area_dead` (
+  `cldad_seq` int NOT NULL AUTO_INCREMENT,
+  `cldad_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `cldad_seoul` int NOT NULL DEFAULT '0',
+  `cldad_busan` int NOT NULL DEFAULT '0',
+  `cldad_daegu` int NOT NULL DEFAULT '0',
+  `cldad_incheon` int NOT NULL DEFAULT '0',
+  `cldad_gwangju` int NOT NULL DEFAULT '0',
+  `cldad_daejeon` int NOT NULL DEFAULT '0',
+  `cldad_ulsan` int NOT NULL DEFAULT '0',
+  PRIMARY KEY (`cldad_seq`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+-- 테이블 데이터 corona_live_db.cl_daliy_area_dead:~10 rows (대략적) 내보내기
+/*!40000 ALTER TABLE `cl_daliy_area_dead` DISABLE KEYS */;
+INSERT INTO `cl_daliy_area_dead` (`cldad_seq`, `cldad_date`, `cldad_seoul`, `cldad_busan`, `cldad_daegu`, `cldad_incheon`, `cldad_gwangju`, `cldad_daejeon`, `cldad_ulsan`) VALUES
+	(1, '2021-04-01 00:00:00', 0, 0, 0, 0, 0, 0, 0),
+	(2, '2021-04-02 00:00:00', 3, 4, 1, 5, 6, 2, 3),
+	(3, '2021-04-03 00:00:00', 4, 3, 2, 2, 1, 5, 1),
+	(4, '2021-04-04 00:00:00', 1, 4, 1, 1, 2, 5, 1),
+	(5, '2021-04-05 00:00:00', 2, 2, 1, 2, 1, 1, 1),
+	(6, '2021-04-06 00:00:00', 2, 2, 2, 2, 2, 2, 2),
+	(7, '2021-04-07 00:00:00', 2, 3, 2, 3, 2, 2, 3),
+	(8, '2021-04-08 00:00:00', 1, 2, 1, 3, 1, 2, 3),
+	(9, '2021-04-09 00:00:00', 3, 4, 1, 3, 4, 2, 3),
+	(10, '2021-04-10 00:00:00', 4, 4, 2, 1, 4, 3, 3);
+/*!40000 ALTER TABLE `cl_daliy_area_dead` ENABLE KEYS */;
+
+-- 테이블 corona_live_db.cl_daliy_area_patient 구조 내보내기
+CREATE TABLE IF NOT EXISTS `cl_daliy_area_patient` (
+  `cldap_seq` int NOT NULL AUTO_INCREMENT,
+  `cldap_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `cldap_seoul` int NOT NULL DEFAULT '0',
+  `cldap_busan` int NOT NULL DEFAULT '0',
+  `cldap_daegu` int NOT NULL DEFAULT '0',
+  `cldap_incheon` int NOT NULL DEFAULT '0',
+  `cldap_gwangju` int NOT NULL DEFAULT '0',
+  `cldap_daejeon` int NOT NULL DEFAULT '0',
+  `cldap_ulsan` int NOT NULL DEFAULT '0',
+  PRIMARY KEY (`cldap_seq`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='각 지역 데일리 환자정보';
+
+-- 테이블 데이터 corona_live_db.cl_daliy_area_patient:~10 rows (대략적) 내보내기
+/*!40000 ALTER TABLE `cl_daliy_area_patient` DISABLE KEYS */;
+INSERT INTO `cl_daliy_area_patient` (`cldap_seq`, `cldap_date`, `cldap_seoul`, `cldap_busan`, `cldap_daegu`, `cldap_incheon`, `cldap_gwangju`, `cldap_daejeon`, `cldap_ulsan`) VALUES
+	(1, '2021-04-01 00:00:00', 50, 42, 5, 93, 12, 14, 0),
+	(2, '2021-04-02 00:00:00', 46, 14, 3, 28, 4, 42, 0),
+	(3, '2021-04-03 00:00:00', 74, 25, 1, 25, 45, 25, 0),
+	(4, '2021-04-04 00:00:00', 123, 51, 5, 35, 6, 34, 0),
+	(5, '2021-04-05 00:00:00', 33, 521, 43, 28, 47, 43, 0),
+	(6, '2021-04-06 00:00:00', 63, 52, 52, 35, 53, 52, 0),
+	(7, '2021-04-07 00:00:00', 13, 52, 24, 53, 34, 14, 0),
+	(8, '2021-04-08 00:00:00', 43, 41, 56, 64, 84, 32, 0),
+	(9, '2021-04-09 00:00:00', 53, 13, 43, 43, 25, 52, 0),
+	(10, '2021-04-10 00:00:00', 50, 25, 15, 23, 31, 18, 10);
+/*!40000 ALTER TABLE `cl_daliy_area_patient` ENABLE KEYS */;
+
+-- 테이블 corona_live_db.cl_daliy_area_quarantine 구조 내보내기
+CREATE TABLE IF NOT EXISTS `cl_daliy_area_quarantine` (
+  `cldaq_seq` int NOT NULL AUTO_INCREMENT,
+  `cldaq_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `cldaq_seoul` int NOT NULL DEFAULT '0',
+  `cldaq_busan` int NOT NULL DEFAULT '0',
+  `cldaq_daegu` int NOT NULL DEFAULT '0',
+  `cldaq_incheon` int NOT NULL DEFAULT '0',
+  `cldaq_gwangju` int NOT NULL DEFAULT '0',
+  `cldaq_daejeon` int NOT NULL DEFAULT '0',
+  `cldaq_ulsan` int NOT NULL DEFAULT '0',
+  PRIMARY KEY (`cldaq_seq`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='매일 지역별 격리 해제';
+
+-- 테이블 데이터 corona_live_db.cl_daliy_area_quarantine:~10 rows (대략적) 내보내기
+/*!40000 ALTER TABLE `cl_daliy_area_quarantine` DISABLE KEYS */;
+INSERT INTO `cl_daliy_area_quarantine` (`cldaq_seq`, `cldaq_date`, `cldaq_seoul`, `cldaq_busan`, `cldaq_daegu`, `cldaq_incheon`, `cldaq_gwangju`, `cldaq_daejeon`, `cldaq_ulsan`) VALUES
+	(1, '2021-04-01 00:00:00', 1, 2, 31, 5, 4, 6, 7),
+	(2, '2021-04-02 00:00:00', 2, 3, 12, 32, 21, 1, 3),
+	(3, '2021-04-03 00:00:00', 1, 2, 3, 3, 7, 3, 2),
+	(4, '2021-04-04 00:00:00', 3, 1, 1, 7, 5, 4, 1),
+	(5, '2021-04-05 00:00:00', 2, 2, 2, 5, 8, 5, 3),
+	(6, '2021-04-06 00:00:00', 2, 4, 3, 5, 3, 2, 3),
+	(7, '2021-04-07 00:00:00', 7, 4, 2, 5, 1, 3, 6),
+	(8, '2021-04-08 00:00:00', 1, 3, 2, 3, 3, 4, 5),
+	(9, '2021-04-09 00:00:00', 2, 6, 6, 3, 5, 2, 0),
+	(10, '2021-04-10 00:00:00', 2, 3, 1, 2, 3, 4, 1);
+/*!40000 ALTER TABLE `cl_daliy_area_quarantine` ENABLE KEYS */;
+
+-- 테이블 corona_live_db.cl_daliy_area_suspicion 구조 내보내기
+CREATE TABLE IF NOT EXISTS `cl_daliy_area_suspicion` (
+  `cldas_seq` int NOT NULL AUTO_INCREMENT,
+  `cldas_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `cldas_seoul` int NOT NULL DEFAULT '0',
+  `cldas_busan` int NOT NULL DEFAULT '0',
+  `cldas_daegu` int NOT NULL DEFAULT '0',
+  `cldas_incheon` int NOT NULL DEFAULT '0',
+  `cldas_gwangju` int NOT NULL DEFAULT '0',
+  `cldas_daejeon` int NOT NULL DEFAULT '0',
+  `cldas_ulsan` int NOT NULL DEFAULT '0',
+  PRIMARY KEY (`cldas_seq`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='매일 지역별 확진의심자';
+
+-- 테이블 데이터 corona_live_db.cl_daliy_area_suspicion:~2 rows (대략적) 내보내기
+/*!40000 ALTER TABLE `cl_daliy_area_suspicion` DISABLE KEYS */;
+INSERT INTO `cl_daliy_area_suspicion` (`cldas_seq`, `cldas_date`, `cldas_seoul`, `cldas_busan`, `cldas_daegu`, `cldas_incheon`, `cldas_gwangju`, `cldas_daejeon`, `cldas_ulsan`) VALUES
+	(1, '2021-04-01 00:00:00', 14, 24, 12, 11, 34, 13, 23),
+	(2, '2021-04-02 00:00:00', 13, 43, 3, 21, 65, 23, 41),
+	(3, '2021-04-03 00:00:00', 1, 2, 1, 2, 2, 3, 1),
+	(4, '2021-04-04 00:00:00', 2, 3, 1, 7, 2, 2, 6),
+	(5, '2021-04-05 00:00:00', 2, 5, 7, 1, 4, 5, 3),
+	(6, '2021-04-06 00:00:00', 1, 2, 4, 6, 3, 9, 1),
+	(7, '2021-04-07 00:00:00', 2, 1, 2, 1, 3, 1, 1),
+	(8, '2021-04-08 00:00:00', 1, 1, 3, 5, 2, 1, 2),
+	(9, '2021-04-09 00:00:00', 2, 1, 1, 1, 2, 1, 1),
+	(10, '2021-04-10 00:00:00', 3, 1, 2, 1, 3, 2, 3);
+/*!40000 ALTER TABLE `cl_daliy_area_suspicion` ENABLE KEYS */;
+
+-- 테이블 corona_live_db.post_info 구조 내보내기
+CREATE TABLE IF NOT EXISTS `post_info` (
+  `pi_seq` int NOT NULL AUTO_INCREMENT,
+  `pi_owner` varchar(50) NOT NULL,
+  `pi_reg_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `pi_board_seq` int NOT NULL,
+  `pi_title` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `pi_content` varchar(10000) DEFAULT NULL,
+  PRIMARY KEY (`pi_seq`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+-- 테이블 데이터 corona_live_db.post_info:~11 rows (대략적) 내보내기
+/*!40000 ALTER TABLE `post_info` DISABLE KEYS */;
+INSERT INTO `post_info` (`pi_seq`, `pi_owner`, `pi_reg_date`, `pi_board_seq`, `pi_title`, `pi_content`) VALUES
+	(1, '애드민', '2021-04-01 00:00:00', 7, '많이 들어보긴 했는데…변이 바이러스, 대체 네가 뭔데', '모든 바이러스는 자연적으로 변이를 만들거든요. 더 멀리, 더 널리 퍼지기 위해서 스스로 진화를 거듭하는 거죠. 모든 바이러스의 특징이라고 할 수 있습니다.'),
+	(2, '애드민', '2021-04-02 00:00:00', 7, '세계 각국 코로나 방역', '코로나19에 대해 세계 각국 정부의 노력이 절실하다'),
+	(3, '애드민', '2021-04-03 00:00:00', 7, '한국에서 100퍼센트코로나 19 감염예방 백신 개발', '우리나라에서 최초로 100퍼센트 감염예방 가능한 백신을 완성했다고 합니다.'),
+	(4, '애드민', '2021-04-04 00:00:00', 7, '코로나19 재확산에 바이러스보다 더 나쁜 가짜뉴스 다시 기승', '최근 코로나19 집단감염이 서울 등 수도권을 중심으로 잇따라 발생하고 전국 곳곳에서 지역사회 감염으로 확산되고 있습니다.\n\n정부는 광복절 집회와 사랑제일교회를 현 단계에서 코로나19 방역의 가장 큰 위험요소로 보고 대처 중 입니다.\n'),
+	(5, '애드민', '2021-04-05 00:00:00', 7, '코로나19 신규확진 525명…이틀째 500명대', '중앙방역대책본부는 오늘 0시 기준 코로나19 신규 확진자가 525명이라고 밝혔습니다.'),
+	(6, '관리자', '2021-04-06 00:00:00', 7, '화이자 코로나19 백신, 2회 접종하면 95퍼센트 이상 예방 효과', '화이자사의 코로나19 백신을 2회 모두 접종하면 예방 효과가 95퍼센트 를 넘어선다는 실증 사례 연구 결과가 나왔습니다.'),
+	(7, '관리자', '2021-04-07 00:00:00', 7, '중국 이래도 되나…인구 2위 인도는 코로나 쓰나미', '일간의 노동https://github.com/Hyunsu-Park/project1절 황금연휴를 맞은 중국에서 주요 관광지들이 밀려드는 인파로 넘쳐나고 있습니다. 환구망 등에 따르면 첫날 철도 이용객은 코로나19 발생 이전인 2019년 보다 6.1퍼센트 증가한 1천830만 명으로 노동절 연휴 이용객이 역대 최대를 기록할 수 있다고 전망했습니다.'),
+	(8, '관리자', '2021-04-08 00:00:00', 7, '확진자 97퍼센트 놓친 자가검사키트…못 믿을 음성 재확인', '영국에서 코로나19 자가검사키트로는 감염자의 3퍼센트 밖에 찾아내지 못한다는 실험 결과가 나왔다. 국내에서도 최근 자가검사키트의 사용이 허가된 가운데, 전문가들은 키트를 보조적인 수단으로만 사용해야 한다고 강조했다.'),
+	(9, '관리자', '2021-04-09 00:00:00', 7, '정부, 코로나19 백신 접종 앞두고 가짜뉴스 대응 강화', '2월 말 신종 코로나바이러스 감염증(코로나19) 백신 접종을 앞두고 정부가 백신 접종과 관련한 가짜뉴스 대응을 강화했다.');
+/*!40000 ALTER TABLE `post_info` ENABLE KEYS */;
+
+-- 테이블 corona_live_db.user_info 구조 내보내기
+CREATE TABLE IF NOT EXISTS `user_info` (
+  `ui_seq` int NOT NULL AUTO_INCREMENT,
+  `ui_id` varchar(50) NOT NULL,
+  `ui_pwd` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `ui_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `ui_gender` int NOT NULL COMMENT '0:남 / 1:여',
+  `ui_age` int NOT NULL,
+  `ui_address` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `ui_phon_number` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ui_reg_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ui_type` int NOT NULL DEFAULT '1' COMMENT '0:관리자  / 1:일반회원',
+  PRIMARY KEY (`ui_seq`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- 테이블 데이터 corona_live_db.user_info:~2 rows (대략적) 내보내기
+/*!40000 ALTER TABLE `user_info` DISABLE KEYS */;
+INSERT INTO `user_info` (`ui_seq`, `ui_id`, `ui_pwd`, `ui_name`, `ui_gender`, `ui_age`, `ui_address`, `ui_phon_number`, `ui_reg_date`, `ui_type`) VALUES
+	(1, 'admin', 'e/5Ik05Oez22y47XI1iaXg==', '애드민', 0, 25, '대구광역시 북구 동화천로 59길', '010-1234-5678', '2021-04-09 17:15:13', 0),
+	(2, 'user', 'e/5Ik05Oez22y47XI1iaXg==', '유저', 0, 40, '서울', NULL, '2021-04-22 17:22:56', 0);
+/*!40000 ALTER TABLE `user_info` ENABLE KEYS */;
+
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
