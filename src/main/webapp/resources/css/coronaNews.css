@@ -1,0 +1,46 @@
+.body{box-sizing: border-box; position: relative; left: 150px;  width: calc(100% - 350px); top: 20px;}
+.body > p {font-weight: 700; font-size: 22px; text-align: center; margin-bottom: 30px;}
+.newsArea {font-weight: 700; font-size: 20px; border-top:2px solid #c4c4c4; background-color: #ccc;
+	 border-bottom:1px solid #ccc; display: block; height: 40px;}
+.newsArea > div { display: inline-block; text-align: center;  padding-top: 11px; font-size: 20px; font-weight: 600; overflow: hidden;position: relative;vertical-align: top;}
+.newsArea > div:nth-child(1) {width: 8%; min-width:60px;}
+.newsArea > div:nth-child(2) {width: 25%; min-width:200px;}
+.newsArea > div:nth-child(3) {width: 35%; min-width:250px;}
+.newsArea > div:nth-child(4) {width: 8%; min-width:100px;}
+.newsArea > div:nth-child(5) {width: 10%; min-width:80px;}
+
+.newsList { height: 38px; font-size: 15px; border-bottom: 1px solid #ccc; background-color: #f3f3f3; position: relative;}
+.newsList > div { display: inline-block; text-align: center; padding-top: 10px; font-size: 18px; font-weight: 500; overflow: hidden;position: relative;
+				 text-overflow:ellipsis; white-space: nowrap; vertical-align: top;
+}
+.newsList > div:nth-child(1) {width: 8%; min-width:60px;}
+.newsList > div:nth-child(2) {width: 25%; min-width:200px;}
+.newsList > div:nth-child(3) {width: 35%; min-width:250px;}
+.newsList > div:nth-child(4) {width: 8%; min-width:100px;}
+.newsList > div:nth-child(5) {width: 10%; min-width:80px;}
+.title > a {text-decoration: none;}
+.content > a {text-decoration: none;}
+div{ overflow:hidden; text-overflow:ellipsis; } /* 텍스트가 div 박스 밖으로 넘치지 못하게 막아줌 */
+form input:nth-child(1){ 
+	display: none;
+	width: 10px;margin-top: 10px;
+}
+.buttonArea {float: right;margin-right: 8px; width: 100px; }
+
+.modify:hover { background-color: black; color: #fff;}
+.delete:hover{ background-color: red; color: #fff;}
+.modifyNews {display: inline-block;}
+.modifyNews input:nth-child(1)  {display: none;}
+.modifyNews input:nth-child(2)  {display: none;}
+.modifyNews input:nth-child(3)  {display: none;}
+.modifyNews input:nth-child(4)  {display: none;}
+.modifyNews input:nth-child(5)  {display: none;}
+.modifyNews input:nth-child(6)  {display: none;}
+.modifyNews input:nth-child(7):hover  {background-color: black; color: #fff;}
+.delete {float: right;}
+
+
+/* form input:nth-child(2) {float: right; width: 100px; height: 40px; font-size: 17px; margin-top: 10px;}	 */
+/* form input:nth-child(2):hover {color: #fff; background-color: #50f502; border-radius:5px; font-size: 17px; } */
+#newsAdd{float: right; width: 100px; height: 40px; font-size: 17px; margin-top: 10px;}
+#newsAdd:hover {color: #fff; background-color: #50f502; border-radius:5px; font-size: 17px;}

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.corona.mapper.DataMapper">
+	<select id="selectAreaList" resultType="Map">
+		SELECT cldap_seoul, cldap_busan, cldap_daegu, cldap_incheon, 
+			cldap_gwangju, cldap_daejeon, cldap_ulsan
+		FROM cl_daliy_area_patient
+		ORDER BY cldap_seq DESC LIMIT #{limit}
+	</select>
+	<select id="selectDailyNewPatientSum" resultType="java.lang.Integer">
+		SELECT cldap_seoul+cldap_busan+cldap_daegu+cldap_incheon+ 
+			cldap_gwangju+cldap_daejeon+cldap_ulsan AS daily_patient
+		FROM cl_daliy_area_patient
+		ORDER BY cldap_seq DESC LIMIT #{limit} 
+	</select>
+	<select id="selectPatientSum" resultType="java.lang.Integer">
+		SELECT sum(cldap_seoul+cldap_busan+cldap_daegu+cldap_incheon+ 
+			cldap_gwangju+cldap_daejeon+cldap_ulsan) AS patient
+		FROM cl_daliy_area_patient
+	</select>
+	<select id="selectDailyPatientSumList" resultType="Map">
+		SELECT cldap_seoul
+			  ,cldap_busan
+			  ,cldap_daegu
+			  ,cldap_incheon
+			  ,cldap_gwangju
+			  ,cldap_daejeon
+			  ,cldap_ulsan
+			  ,date_format(cldap_date, '%Y-%m-%d') AS date
+		FROM cl_daliy_area_patient
+		ORDER BY cldap_seq DESC LIMIT #{limit} 
+	</select>
+	
+	<select id="selectAreaDeadList" resultType="com.corona.vo.DataVO">
+		SELECT  cldad_seoul, cldad_busan, cldad_daegu, cldad_incheon, 
+			cldad_gwangju, cldad_daejeon, cldad_ulsan
+		FROM cl_daliy_area_dead
+		ORDER BY cldad_seq DESC LIMIT #{limit}
+	</select>
+	<select id="selectDailyNewDeadSum" resultType="java.lang.Integer">
+		SELECT cldad_seoul+cldad_busan+cldad_daegu+cldad_incheon+
+		cldad_gwangju+cldad_daejeon+cldad_ulsan AS daily_dead 
+		FROM cl_daliy_area_dead
+		ORDER BY cldad_seq DESC LIMIT #{limit}
+	</select>
+	<select id="selectDeadSum" resultType="java.lang.Integer">
+		SELECT sum(cldad_seoul+cldad_busan+cldad_daegu+cldad_incheon+
+			cldad_gwangju+cldad_daejeon+cldad_ulsan) AS dead 
+		FROM cl_daliy_area_dead
+	</select>
+	<select id="selectDailyDeadSumList" resultType="Map">
+		SELECT cldad_seoul
+			  ,cldad_busan
+			  ,cldad_daegu
+			  ,cldad_incheon
+			  ,cldad_gwangju
+			  ,cldad_daejeon
+			  ,cldad_ulsan
+			  ,date_format(cldad_date, '%Y-%m-%d') AS date
+		FROM cl_daliy_area_dead
+		ORDER BY cldad_seq DESC LIMIT #{limit} 
+	</select>
+
+	<select id="selectAreaQuarantineList" resultType="com.corona.vo.DataVO">
+		SELECT cldaq_seoul, cldaq_busan, cldaq_daegu, cldaq_incheon, 
+			cldaq_gwangju, cldaq_daejeon, cldaq_ulsan
+		FROM cl_daliy_area_quarantine
+		ORDER BY cldaq_seq DESC LIMIT #{limit}
+	</select>
+	<select id="selectDailyNewQuarantineSum" resultType="java.lang.Integer">
+		SELECT cldaq_seoul+cldaq_busan+cldaq_daegu+cldaq_incheon+ 
+			cldaq_gwangju+cldaq_daejeon+cldaq_ulsan AS daily_quarantine
+		FROM cl_daliy_area_quarantine
+		ORDER BY cldaq_seq DESC LIMIT #{limit}
+	</select>
+	<select id="selectQuarantineSum" resultType="java.lang.Integer">
+		SELECT sum(cldaq_seoul+cldaq_busan+cldaq_daegu+cldaq_incheon+ 
+			cldaq_gwangju+cldaq_daejeon+cldaq_ulsan) AS quarantine
+		FROM cl_daliy_area_quarantine
+	</select>
+	<select id="selectDailyQuarantineSumList" resultType="map">
+		SELECT cldaq_seoul
+			  ,cldaq_busan
+			  ,cldaq_daegu
+			  ,cldaq_incheon
+			  ,cldaq_gwangju
+			  ,cldaq_daejeon
+			  ,cldaq_ulsan
+			  ,date_format(cldaq_date, '%Y-%m-%d') AS date
+		FROM cl_daliy_area_quarantine
+		ORDER BY cldaq_seq DESC LIMIT #{limit} 
+	</select>
+	
+	<select id="selectAreaSuspicionList" resultType="com.corona.vo.DataVO">
+		SELECT cldas_seoul, cldas_busan, cldas_daegu, cldas_incheon, 
+			cldas_gwangju, cldas_daejeon, cldas_ulsan
+		FROM cl_daliy_area_suspicion
+		ORDER BY cldas_seq DESC LIMIT #{limit}
+	</select>
+	<select id="selectDailyNewSuspicionSum" resultType="java.lang.Integer">
+		SELECT cldas_seoul+cldas_busan+cldas_daegu+cldas_incheon+ 
+			cldas_gwangju+cldas_daejeon+cldas_ulsan AS daily_suspicion
+		FROM cl_daliy_area_suspicion
+		ORDER BY cldas_seq DESC LIMIT #{limit}
+	</select>
+	<select id="selectSuspicionSum" resultType="java.lang.Integer">
+		SELECT sum(cldas_seoul+cldas_busan+cldas_daegu+cldas_incheon+ 
+			cldas_gwangju+cldas_daejeon+cldas_ulsan) AS suspicion
+		FROM cl_daliy_area_suspicion
+	</select>
+</mapper>

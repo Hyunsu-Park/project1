@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.corona.mapper.PostMapper">
+	<!-- 게시판에 맞는 게시글 리스트 들고오기 -->
+	<select id="selectNewsPostList" resultType="com.corona.vo.PostVO">	
+		SELECT * FROM post_info WHERE pi_board_seq =#{num}
+		ORDER BY pi_seq DESC Limit 10 		
+	</select>
+<!-- 	<select id="selectNewsPost" resultType="com.corona.vo.PostVO"> -->
+<!-- 		SELECT * FROM post_info WHERE pi_seq=#{seq}  -->
+<!-- 	</select>   				잘못만든듯??  -->
+	<!--  게시글 수정 -->
+	<update id="updatePost">
+		UPDATE post_info 
+		SET pi_seq=#{pi_seq}, pi_owner=#{pi_owner}, pi_reg_date=#{pi_reg_date}, pi_board_seq=#{pi_board_seq}, pi_title=#{pi_title}, pi_content=#{pi_content}
+		WHERE pi_seq = #{pi_seq}
+	</update>
+	<!--  게시글 추가  -->
+	<insert id="insertPost">			
+		INSERT INTO post_info (pi_owner, pi_board_seq, pi_title, pi_content, pi_reg_date)
+		VALUES (#{pi_owner}, #{pi_board_seq}, #{pi_title}, #{pi_content}, #{pi_reg_date})
+	</insert>
+	<delete id="deletePost">
+		DELETE FROM post_info WHERE pi_seq=#{seq}
+	</delete>
+	
+	
+	<!-- 	이동동선 게시글 리스트 들고오기 -->
+	<select id="selectVisitPostList" resultType="com.corona.vo.VisitPostVO">	
+		SELECT clpv_seq AS seq, clpv_area AS area, clpv_type AS type, clpv_address AS address, clpv_first_visit_date AS date1,
+			clpv_last_visit_date AS date2, clpv_disinfection AS disinfection
+		FROM clp_visit ORDER BY clpv_seq DESC Limit 10 	
+	</select>
+	<!-- 	이동동선 게시글 수정  -->
+	<update id="updateVisitPost">			
+		UPDATE clp_visit 
+		SET clpv_area=#{area}, clpv_type=#{type}, clpv_address=#{address}, clpv_first_visit_date=#{date1}, clpv_last_visit_date=#{date2}, clpv_disinfection=#{disinfection}
+		WHERE clpv_seq=#{seq}   					
+	</update>
+	<!-- 	이동동선 게시글 추가  -->
+	<insert id="insertVisitPost">				
+		INSERT INTO clp_visit (
+				clpv_area, clpv_type, clpv_address,	clpv_first_visit_date, clpv_last_visit_date, clpv_disinfection
+				) 
+			VALUES (
+				#{area},
+				#{type},
+				#{address},
+				#{date1},
+				#{date2},
+				#{disinfection}
+			)										
+	</insert>
+	<!-- 	이동동선 게시글 삭제  -->
+	<delete id="deleteVisitPost">				
+		DELETE FROM clp_visit WHERE clpv_seq=#{seq}
+	</delete>
+	
+	<!-- 메인화면에 넣어줄 뉴스리스트 5개-->
+	<select id="selectNewsListMain" resultType="com.corona.vo.MainNewsVO">
+			SELECT pi_seq, pi_title, pi_content, pi_board_seq FROM post_info WHERE pi_board_seq =#{num}
+			ORDER BY pi_seq DESC LIMIT 5
+	</select>
+</mapper>

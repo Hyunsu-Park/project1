@@ -1,0 +1,32 @@
+@charset "UTF-8";
+body {float: left; width: 100%;}
+.header_box{ padding-bottom: 20px; }
+.nav_area {box-sizing: border-box; height: 63px; padding:20px 0 30px; background-color: rgb(100,190,255)}
+.nav_area_content{display: inline-block;height: 20px; overflow: hidden; width: 100%;}
+.parent_area {display: inline-block;} 
+.parent_area1 > div {display: inline-block;display: inline-block; text-decoration: none; color: #fff; font-size: 20px; font-weight: 800; margin-left: 50px;
+	 text-align: center; vertical-align: center;}
+.nav_area_content a { display: inline-block; text-decoration: none; color: #fff; font-size: 20px; font-weight: 800; 
+	 text-align: center; vertical-align: center;
+}
+.parent1 {padding: 0 80px;}
+.parent4 {padding: 0 80px;}
+.parent7 {padding: 0 80px;}
+.parent9 {padding: 0 80px;}
+.parent12 {padding: 0 80px;}
+
+.child_area a {display: inline-block; text-decoration: none; color: #fff; font-size: 17px; font-weight: 600; width: 240px;
+}
+.search_area {float: right; margin-right: 10%;}
+.child_area a:nth-child(1)  {margin-left: 50px;} 
+.child_area a:nth-child(3)  {margin-left: 400px;} 
+.child_area a:nth-child(5)  {margin-left: 650px;} 
+.child_area a:nth-child(6) 	{margin-left: 850px;}
+.child_area a:nth-child(7) 	{width: 310px;}
+/* .child_area {background-color: rgb(100,190,255); margin-left: 80px; width: 1000px;} */
+/* .child_area a { text-decoration: none; color: #fff; font-weight: 600;font-size: 18px; } */
+.login_area {display: inline-block;}
+
+.user_info p { position: fixed; left: 75%; top: 70px;}
+.user_info p a {text-decoration: none; margin: 1px;}
+.user_info p a:hover { color: red; font-size: 20px; font-weight: 600;}

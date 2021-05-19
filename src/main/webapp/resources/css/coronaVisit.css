@@ -1,0 +1,43 @@
+.body{box-sizing: border-box; position: relative; left: 150px; width: calc(100% - 350px); top: 20px;}
+.body > p {font-weight: 700; font-size: 22px; text-align: center; margin-bottom: 30px;}
+.visitArea {font-weight: 700; font-size: 20px; border-top:2px solid #c4c4c4; background-color: #ccc;
+	 border-bottom:1px solid #ccc; display: block; height: 40px;}
+.visitArea > div { display: inline-block; text-align: center;  padding-top: 11px; font-size: 20px; font-weight: 600; overflow: hidden;position: relative;vertical-align: top;}
+.visitArea > div:nth-child(1) {width: 4%; min-width:80px;}
+.visitArea > div:nth-child(2) {width: 14%; min-width:120px;}
+.visitArea > div:nth-child(3) {width: 8%; min-width:80px;}
+.visitArea > div:nth-child(4) {width: 32%; min-width:200px;}
+.visitArea > div:nth-child(5) {width: 12%; min-width:120px;}
+.visitArea > div:nth-child(6) {width: 12%; min-width:120px;}
+.visitArea > div:nth-child(7) {width: 5%; min-width:80px;}
+
+.visitList { height: 38px; font-size: 15px; border-bottom: 1px solid #ccc; background-color: #f3f3f3; }
+.visitList > div { display: inline-block; text-align: center; padding-top: 10px; font-size: 18px; font-weight: 500; overflow: hidden;position: relative;
+				 text-overflow:ellipsis; white-space: nowrap; vertical-align: top;
+}
+.visitList > div:nth-child(1) {width: 4%; min-width:80px;}
+.visitList > div:nth-child(2) {width: 14%; min-width:120px;}
+.visitList > div:nth-child(3) {width: 8%; min-width:80px;}
+.visitList > div:nth-child(4) {width: 32%; min-width:200px;}
+.visitList > div:nth-child(5) {width: 12%; min-width:120px;}
+.visitList > div:nth-child(6) {width: 12%; min-width:120px;}
+.visitList > div:nth-child(7) {width: 4%; min-width:80px;}
+.buttonArea {float: right; position: absolute; margin-right: 10px;}
+div{ overflow:hidden; text-overflow:ellipsis;}
+
+.modify:hover { background-color: black; color: #fff;}
+.delete:hover{ background-color: red; color: #fff;}
+
+.add {float: right; width: 100px; height: 40px; font-size: 17px; margin-top: 10px;}	
+.add:hover { color: #fff; background-color: #50f502; border-radius:5px; font-size: 17px;}
+
+.modalContent {display: none; position: fixed; top: 30%; left: 36%; width: 600px; height: 430px;background-color: #bbb; z-index: 1; border-radius:5px ; }
+.modalContent span { font-size: 20px; font-weight: 750;  margin-left: 10px;}
+.modalContent p { font-size: 20px; font-weight: 650; text-align: center; margin-top: 20px;}
+
+.modalContent span input {font-size: 20px;}
+.modalContent span textarea { width: 450px; height: 22px; font-size: 20px; }
+
+.save{width: 200px; height: 40px; border-radius:5px ; margin-left: 80px; margin-top: 20px;}
+.cancel{width: 200px; height: 40px; border-radius:5px ; margin-left: 30px; margin-top: 20px;}
+.open {display: block; }

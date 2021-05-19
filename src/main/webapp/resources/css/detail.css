@@ -1,0 +1,27 @@
+body{background-color: #bbb;}
+.body{box-sizing: border-box; position: relative; left: 300px; margin-top: 50px; width: calc(100% - 300px)
+
+}
+
+.titleArea { padding-left: 200px; padding-top: 30px; min-width : 1460px }
+.title {width: 1000px; height: 40px; border-radius:8px;}
+.contentArea { padding-left: 200px; padding-top: 30px;  min-width : 1460px}
+.content {width: 1000px; height: 700px; border-radius:8px;}
+select { overflow: hidden;  text-overflow:ellipsis;}
+#categoryList { width:200px; height: 45px;border-radius:8px;}
+#add {border-radius:8px; width: 170px; height: 105px; margin-left: 30px; vertical-align: bottom; font-size: 18px; font-weight: 500;}
+#add:hover { background-color: #ccc; color: #fff;	}
+#modify {border-radius:8px; width: 170px; height: 105px; margin-left: 30px; vertical-align: bottom; font-size: 18px; font-weight: 500;}
+#modify:hover { background-color: #ccc; color: #fff;	}
+.contentArea > span {vertical-align: top; }
+.body > p { font-weight: 700; font-size: 20px; margin-left: 650px;}
+.body > div > span { font-weight: 600; font-size: 18px;}
+textarea { font-size: 17px;}
+
+.titleArea {
+	overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* #boardSeq {display: none;} */
+.otherArea { margin-left: 250px;}
+#parameterData {display: none;}

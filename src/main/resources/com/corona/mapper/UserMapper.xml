@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.corona.mapper.UserMapper">
+	<select id="getUserList" resultType="com.corona.vo.UserVO">
+		SELECT * FROM user_info
+	</select>
+	<select id="selectSimpleUserInfo" resultType="com.corona.vo.SimpleUserVO">
+		SELECT ui_id AS id, ui_name AS name, ui_type AS type 
+		FROM user_info
+		WHERE ui_id=#{id} AND ui_pwd=#{pwd}
+	</select>
+	<select id="userLogin" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM user_info WHERE ui_id=#{id} AND ui_pwd=#{pwd}
+	</select>
+	<insert id="insertUserInfo">
+		INSERT INTO user_info (ui_id,ui_pwd,ui_name,ui_gender,ui_age,ui_address,ui_phon_number)
+		VALUES(#{ui_id},#{ui_pwd},#{ui_name},#{ui_gender},#{ui_age},#{ui_address},#{ui_phon_number})
+	</insert>
+	<select id="selectUserCntById" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM user_info WHERE ui_id=#{id}
+	</select>
+</mapper>

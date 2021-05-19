@@ -1,0 +1,36 @@
+.body1{box-sizing: border-box; position: relative; left: 150px; }
+.body2{box-sizing: border-box; position: relative; left: 150px; width: calc(100% - 350px); }
+.loginBox { display: block;height:250px;}
+.body1 h1{font-weight: 700;font-size: 20px; color: red ; text-align: center; padding-top: 120px; margin-right: 14%; margin-top: 10%;}
+.login_area {position: absolute;top: 80%; left: 33%; }
+.login_area > a {text-decoration: none; font-size: 20px; font-weight: 600; margin: 20px;}
+.login_area > a:hover {color: red;}
+.liveNum {display:inline-block; border: 1px solid #ccc; top: 20px; margin-left:100px;}
+.liveNumNon {position: absolute; display:inline-block;width: 600px; border: 1px solid #ccc; left: 28.5%; margin-top: 60px;}
+.liveNum > li {float: left; text-align: center; border: 1px solid #ccc; width: 24.6%; }
+.liveNum > li > span { display: block; text-align: center; margin-top: 10px; }
+.liveNum > li .mini_title {font-size: 10px;}
+.liveNumNon > ul > li {float: left; text-align: center; border: 1px solid #ccc; width: 24.63%;}
+.liveNumNon > ul > li > span { display: block; text-align: center; margin-top: 10px; }
+.liveNumNon > ul > li .mini_title {font-size: 10px;}
+#chart_div_square1, #chart_div_square2, #chart_div_square3 {width:840px; height: 270px; display: inline-block; margin:10px; float: left;}
+#chart_div_square3 { margin-right: 150px;}
+#chart_div_square2 g:nth-child(2) > rect {fill:red;}
+#chart_div_square3 g:nth-child(2) > rect {fill:green;}
+
+.chart_patient{padding: 10px;}
+.user_info {float: right; padding: 15px 30px 0 0; overflow: hidden;}
+#chart_div_pie {width: 450px; height: 370px; display: inline-block; float: left; margin: 20px 40px;  }
+#chart_div_pie > p { font-weight: 600; color: red; padding-left: 95px;}
+#pieChartCanvas {width: 450px; height: 350px; display: inline-block; }
+
+.newNewsBox {
+	width: 330px; height: 330px; display: inline-block; border:1px solid #ccc;
+	 margin: 20px 30px; padding: 20px;border-radius:10px; box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+	 }
+.newNewsBox > div:nth-child(1) { float: right;}
+.newNewsBox > div:nth-child(1) > a { text-decoration: none;}
+
+.postNewsListMain {margin-bottom: 10px; border-bottom: 1px solid #ccc; width: 330px; overflow: hidden; white-space: nowrap;}
+.postNewsListMain > div{ margin-bottom: 5px; height:24px; }
+.postNewsListMain > div > a {text-decoration: none; font-size: 18px;  }
